@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>net.vieapps.Components.Utility</RootNamespace>
+		<AssemblyName>VIEApps.Components.Utility.Epub</AssemblyName>
+		<AssemblyTitle>VIEApps NGX Utility for generating .EPUB document</AssemblyTitle>
+		<AssemblyVersion>10.2.2.1806</AssemblyVersion>
+		<FileVersion>10.2.2.1806</FileVersion>
+		<InformationalVersion>v10.2.netstandard-2+rev:2018.05.18</InformationalVersion>
+		<Product>VIEApps NGX</Product>
+		<Company>VIEApps.net</Company>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<PackageId>VIEApps.Components.Utility.Epub</PackageId>
+		<Version>10.2.2.1806</Version>
+		<SignAssembly>false</SignAssembly>
+		<DelaySign>false</DelaySign>
+		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
+		<Title>VIEApps NGX Utility .EPUB documents</Title>
+		<Description>The library for generating .EPUB document .NET Standard 2.0</Description>
+		<Authors>VIEApps.net</Authors>
+		<Copyright>© 2018 VIEApps.net</Copyright>
+		<PackageTags>utility;extensions;epub;ebook;ebooks;e-book;e-books;vieapps;vieapps.components</PackageTags>
+		<PackageReleaseNotes>Fork and re-implement from DotNetEpub to run well on .NET Standard 2.0</PackageReleaseNotes>
+		<PackageProjectUrl>https://github.com/vieapps/Components.Utility.Epub</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/vieapps/Components.Utility.Epub</RepositoryUrl>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<WarningLevel>3</WarningLevel>
+		<DocumentationFile>bin\Debug\netstandard2.0\VIEApps.Components.Utility.Epub.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<WarningLevel>3</WarningLevel>
+		<DocumentationFile>bin\Release\netstandard2.0\VIEApps.Components.Utility.Epub.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove=".DS_Store" />
+		<None Remove=".gitattributes" />
+		<None Remove=".gitignore" />
+		<None Remove="LICENSE.md" />
+		<None Remove="README.md" />
+	</ItemGroup>
+
+</Project>
