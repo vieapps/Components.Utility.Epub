@@ -2,12 +2,12 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<RootNamespace>net.vieapps.Components.Utility</RootNamespace>
+		<RootNamespace>net.vieapps.Components.Utility.Epub</RootNamespace>
 		<AssemblyName>VIEApps.Components.Utility.Epub</AssemblyName>
 		<AssemblyTitle>VIEApps NGX Utility for generating .EPUB document</AssemblyTitle>
 		<AssemblyVersion>10.2.2.1806</AssemblyVersion>
 		<FileVersion>10.2.2.1806</FileVersion>
-		<InformationalVersion>v10.2.netstandard-2+rev:2018.05.18</InformationalVersion>
+		<InformationalVersion>v10.2.netstandard-2+rev:2018.05.21</InformationalVersion>
 		<Product>VIEApps NGX</Product>
 		<Company>VIEApps.net</Company>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>

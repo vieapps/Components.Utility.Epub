@@ -32,7 +32,7 @@ namespace net.vieapps.Components.Utility.Epub
 		string _metainfDirectory;
 
 		/// <summary>
-		/// Creates new instance
+		/// Creates new instance of .EPUB document
 		/// </summary>
 		public Document()
 		{
@@ -421,9 +421,9 @@ namespace net.vieapps.Components.Utility.Epub
 		public void AddReference(string href, string type, string title) => this._guide.AddReference(href, type, title);
 
 		/// <summary>
-		/// Generate document and save to specified filename
+		/// Generate document and save to specified file path
 		/// </summary>
-		/// <param name="epubFilePath">The full path to save .EPUB file to</param>
+		/// <param name="epubFilePath">The full path of .EPUB file to save the document</param>
 		/// <param name="onSuccess">The action to run when the .EPUB document is generated successfully</param>
 		/// <param name="onFailure">The action to run when got any error</param>
 		public void Generate(string epubFilePath, Action<string> onSuccess = null, Action<Exception> onFailure = null)
@@ -443,6 +443,7 @@ namespace net.vieapps.Components.Utility.Epub
 						File.Delete(epubFilePath);
 					}
 					catch { }
+
 				ZipFile.CreateFromDirectory(this.GetTempDirectory(), epubFilePath, CompressionLevel.Optimal, false, Encoding.UTF8);
 
 				// add MIME type
@@ -455,19 +456,24 @@ namespace net.vieapps.Components.Utility.Epub
 					}
 				}
 
+				// callback
+				onSuccess?.Invoke(epubFilePath);
+			}
+			catch (Exception ex)
+			{
+				if (onFailure != null)
+					onFailure(ex);
+				else
+					throw ex;
+			}
+			finally
+			{
 				// delete the temporary directory
 				try
 				{
 					Directory.Delete(this.GetTempDirectory(), true);
 				}
 				catch { }
-
-				// callback
-				onSuccess?.Invoke(epubFilePath);
-			}
-			catch (Exception ex)
-			{
-				onFailure?.Invoke(ex);
 			}
 		}
 	}
