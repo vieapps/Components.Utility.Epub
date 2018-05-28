@@ -15,8 +15,8 @@ namespace net.vieapps.Components.Utility.Epub
 	/// </summary>
 	public class Document
 	{
-		static internal XNamespace OpfNS = "http://www.idpf.org/2007/opf";
-		static internal XNamespace DcNS = "http://purl.org/dc/elements/1.1/";
+		internal readonly static XNamespace OpfNS = "http://www.idpf.org/2007/opf";
+		internal readonly static XNamespace DcNS = "http://purl.org/dc/elements/1.1/";
 
 		readonly Metadata _metadata;
 		readonly Manifest _manifest;
@@ -68,7 +68,7 @@ namespace net.vieapps.Components.Utility.Epub
 			return this._tempDirectory;
 		}
 
-		private string GetOpfDirectory()
+		string GetOpfDirectory()
 		{
 			if (string.IsNullOrEmpty(this._opfDirectory))
 			{
@@ -78,7 +78,7 @@ namespace net.vieapps.Components.Utility.Epub
 			return this._opfDirectory;
 		}
 
-		private string GetMetaInfDirectory()
+		string GetMetaInfDirectory()
 		{
 			if (string.IsNullOrEmpty(this._metainfDirectory))
 			{
@@ -89,7 +89,7 @@ namespace net.vieapps.Components.Utility.Epub
 			return this._metainfDirectory;
 		}
 
-		private string GetNextID(string kind)
+		string GetNextID(string kind)
 		{
 			string id;
 			if (this._ids.Keys.Contains(kind))
@@ -194,23 +194,23 @@ namespace net.vieapps.Components.Utility.Epub
 		/// <param name="value">meta element value</param>
 		public void AddMetaItem(string name, string value) => this._metadata.AddItem(name, value);
 
-		private string AddEntry(string path, string type)
+		string AddEntry(string path, string type)
 		{
 			var id = this.GetNextID("id");
 			this._manifest.AddItem(id, path, type);
 			return id;
 		}
 
-		private string AddStylesheetEntry(string path)
+		string AddStylesheetEntry(string path)
 		{
 			var id = this.GetNextID("stylesheet");
 			this._manifest.AddItem(id, path, "text/css");
 			return id;
 		}
 
-		private string AddXhtmlEntry(string path) => this.AddXhtmlEntry(path, true);
+		string AddXhtmlEntry(string path) => this.AddXhtmlEntry(path, true);
 
-		private string AddXhtmlEntry(string path, bool linear)
+		string AddXhtmlEntry(string path, bool linear)
 		{
 			var id = this.GetNextID("html");
 			this._manifest.AddItem(id, path, "application/xhtml+xml");
@@ -218,7 +218,7 @@ namespace net.vieapps.Components.Utility.Epub
 			return id;
 		}
 
-		private string AddImageEntry(string path)
+		string AddImageEntry(string path)
 		{
 			var id = this.GetNextID("img");
 			var contentType = string.Empty;
@@ -239,14 +239,14 @@ namespace net.vieapps.Components.Utility.Epub
 			return id;
 		}
 
-		private void CopyFile(string path, string epubPath)
+		void CopyFile(string path, string epubPath)
 		{
 			var fullPath = Path.Combine(this.GetOpfDirectory(), epubPath);
 			this.EnsureDirectoryExists(fullPath);
 			File.Copy(path, fullPath);
 		}
 
-		private string EnsureDirectoryExists(string path)
+		string EnsureDirectoryExists(string path)
 		{
 			var dir = Path.GetDirectoryName(path);
 			if (!Directory.Exists(dir))
@@ -254,14 +254,14 @@ namespace net.vieapps.Components.Utility.Epub
 			return path;
 		}
 
-		private void WriteFile(string epubPath, byte[] content)
+		void WriteFile(string epubPath, byte[] content)
 		{
 			var fullPath = Path.Combine(this.GetOpfDirectory(), epubPath);
 			this.EnsureDirectoryExists(fullPath);
 			File.WriteAllBytes(fullPath, content);
 		}
 
-		private void WriteFile(string epubPath, string content)
+		void WriteFile(string epubPath, string content)
 		{
 			var fullPath = Path.Combine(this.GetOpfDirectory(), epubPath);
 			this.EnsureDirectoryExists(fullPath);
@@ -378,7 +378,7 @@ namespace net.vieapps.Components.Utility.Epub
 			return this.AddEntry(epubPath, mediaType);
 		}
 
-		private void WriteOpf(string opfFilePath)
+		void WriteOpf(string opfFilePath)
 		{
 			var packageElement = new XElement(Document.OpfNS + "package", new XAttribute("version", "2.0"), new XAttribute("unique-identifier", "BookId"));
 			packageElement.Add(this._metadata.ToElement());
@@ -388,11 +388,11 @@ namespace net.vieapps.Components.Utility.Epub
 			packageElement.Save(Path.Combine(this.GetOpfDirectory(), opfFilePath));
 		}
 
-		private void WriteNcx(string ncxFilePath) => this._ncx.ToXmlDocument().Save(Path.Combine(this.GetOpfDirectory(), ncxFilePath));
+		void WriteNcx(string ncxFilePath) => this._ncx.ToXmlDocument().Save(Path.Combine(this.GetOpfDirectory(), ncxFilePath));
 
-		private void WriteContainer() => this._container.ToElement().Save(Path.Combine(this.GetMetaInfDirectory(), "container.xml"));
+		void WriteContainer() => this._container.ToElement().Save(Path.Combine(this.GetMetaInfDirectory(), "container.xml"));
 
-		private void WriteAppleIBooksDisplayOptions()
+		void WriteAppleiBooksDisplayOptions()
 			=> new XElement("display_options", new XElement("platform", new XAttribute("name", "*"), new XElement("option", new XAttribute("name", "specified-fonts"), true)))
 				.Save(Path.Combine(this.GetMetaInfDirectory(), "com.apple.ibooks.display-options.xml"));
 
@@ -423,10 +423,10 @@ namespace net.vieapps.Components.Utility.Epub
 		/// <summary>
 		/// Generate document and save to specified file path
 		/// </summary>
-		/// <param name="epubFilePath">The full path of .EPUB file to save the document</param>
-		/// <param name="onSuccess">The action to run when the .EPUB document is generated successfully</param>
-		/// <param name="onFailure">The action to run when got any error</param>
-		public void Generate(string epubFilePath, Action<string> onSuccess = null, Action<Exception> onFailure = null)
+		/// <param name="filePath">The absolute path of .EPUB file to save the document</param>
+		/// <param name="onSuccess">The action to callback when generated successfully</param>
+		/// <param name="onFailure">The action to callback when got any error</param>
+		public void Generate(string filePath, Action<string> onSuccess = null, Action<Exception> onFailure = null)
 		{
 			try
 			{
@@ -434,20 +434,21 @@ namespace net.vieapps.Components.Utility.Epub
 				this.WriteOpf("content.opf");
 				this.WriteNcx("toc.ncx");
 				this.WriteContainer();
-				this.WriteAppleIBooksDisplayOptions();
+				this.WriteAppleiBooksDisplayOptions();
 
-				// zip the temp directory as .EPUB file
-				if (File.Exists(epubFilePath))
+				// check to delete old .EPUB file
+				if (File.Exists(filePath))
 					try
 					{
-						File.Delete(epubFilePath);
+						File.Delete(filePath);
 					}
 					catch { }
 
-				ZipFile.CreateFromDirectory(this.GetTempDirectory(), epubFilePath, CompressionLevel.Optimal, false, Encoding.UTF8);
+				// zip the temp directory as .EPUB file
+				ZipFile.CreateFromDirectory(this.GetTempDirectory(), filePath, CompressionLevel.Optimal, false, Encoding.UTF8);
 
 				// add MIME type
-				using (var zipArchive = ZipFile.Open(epubFilePath, ZipArchiveMode.Update))
+				using (var zipArchive = ZipFile.Open(filePath, ZipArchiveMode.Update))
 				{
 					var entry = zipArchive.CreateEntry("mimetype", CompressionLevel.NoCompression);
 					using (var writer = new StreamWriter(entry.Open()))
@@ -457,7 +458,7 @@ namespace net.vieapps.Components.Utility.Epub
 				}
 
 				// callback
-				onSuccess?.Invoke(epubFilePath);
+				onSuccess?.Invoke(filePath);
 			}
 			catch (Exception ex)
 			{

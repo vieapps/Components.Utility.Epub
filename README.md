@@ -2,11 +2,13 @@
 
 A simple library for generating .EPUB documents on .NET Standard 2.0
 
+[![NuGet](https://img.shields.io/nuget/v/VIEApps.Components.Utility.Epub.svg)](https://www.nuget.org/packages/VIEApps.Components.Utility.Epub)
+
 ```csharp
 using net.vieapps.Components.Utility.Epub;
 
 var epub = new Epub.Document();
-epub.AddBookIdentifier(uuid));
+epub.AddBookIdentifier(uuid);
 epub.AddLanguage(language);
 epub.AddTitle(title);
 epub.AddAuthor(author);
@@ -37,7 +39,7 @@ var pageTemplate = @"<!DOCTYPE html>
 	</html>".Trim().Replace("\t", "");
 
 // cover
-epub.AddXhtmlData("page0.xhtml", pageTemplate.Replace("{0}", coverTitle).Replace("{1}", coverBody)));
+epub.AddXhtmlData("page0.xhtml", pageTemplate.Replace("{0}", coverTitle).Replace("{1}", coverBody));
 
 // chapter
 for (var index = 0; index < pages.Count; index++)
@@ -55,7 +57,3 @@ epub.Generate("sample-document.epub");
 ## Others
 
 This library is hard-fork of [DotNetEpub](https://github.com/gonzoua/DotNetEpub) with some modifications to run wel on .NET Standard 2.0
-
-## NuGet
-- Package ID: **VIEApps.Components.Utility.Epub**
-- Details: https://www.nuget.org/packages/VIEApps.Components.Utility.Epub
