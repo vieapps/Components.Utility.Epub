@@ -5,14 +5,14 @@
 		<RootNamespace>net.vieapps.Components.Utility.Epub</RootNamespace>
 		<AssemblyName>VIEApps.Components.Utility.Epub</AssemblyName>
 		<AssemblyTitle>VIEApps NGX .EPUB Utility</AssemblyTitle>
-		<AssemblyVersion>10.2.3.1806</AssemblyVersion>
-		<FileVersion>10.2.3.1806</FileVersion>
-		<InformationalVersion>v10.2.netstandard-2+rev:2018.05.21</InformationalVersion>
+		<AssemblyVersion>10.2.1810.1</AssemblyVersion>
+		<FileVersion>10.2.1810.1</FileVersion>
+		<InformationalVersion>v10.2.netstandard-2+rev:2018.10.08</InformationalVersion>
 		<Product>VIEApps NGX</Product>
 		<Company>VIEApps.net</Company>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageId>VIEApps.Components.Utility.Epub</PackageId>
-		<Version>10.2.3.1806</Version>
+		<Version>10.2.1810.1</Version>
 		<SignAssembly>false</SignAssembly>
 		<DelaySign>false</DelaySign>
 		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
@@ -21,7 +21,7 @@
 		<Authors>VIEApps.net</Authors>
 		<Copyright>© 2018 VIEApps.net</Copyright>
 		<PackageTags>utility;extensions;epub;ebook;ebooks;e-book;e-books;vieapps;vieapps.components</PackageTags>
-		<PackageReleaseNotes>Improvement: delete temporary directory after generating</PackageReleaseNotes>
+		<PackageReleaseNotes>Update version information to match with both semver and calver</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/vieapps/Components.Utility.Epub</PackageProjectUrl>
 		<PackageIconUrl>https://github.com/vieapps/Components.Utility/raw/master/logo.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/vieapps/Components.Utility.Epub</RepositoryUrl>

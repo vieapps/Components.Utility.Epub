@@ -8,6 +8,8 @@ using System.Xml.Linq;
 using System.Collections.Generic;
 #endregion
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("VIEApps.Components.XUnitTests")]
+
 namespace net.vieapps.Components.Utility.Epub
 {
 	/// <summary>
