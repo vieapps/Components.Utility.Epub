@@ -51,7 +51,7 @@ namespace net.vieapps.Components.Utility.Epub
 			this._spine.SetToc("ncx");
 			this._container.AddRootFile("OPF/content.opf", "application/oebps-package+xml");
 
-			var uuid = "urn:uuid:" + Guid.NewGuid().ToString();
+			var uuid = $"urn:uuid:{Guid.NewGuid()}";
 			this._ncx.SetUid(uuid);
 			this._metadata.AddBookIdentifier("BookId", uuid);
 		}
@@ -394,9 +394,7 @@ namespace net.vieapps.Components.Utility.Epub
 
 		void WriteContainer() => this._container.ToElement().Save(Path.Combine(this.GetMetaInfDirectory(), "container.xml"));
 
-		void WriteAppleiBooksDisplayOptions()
-			=> new XElement("display_options", new XElement("platform", new XAttribute("name", "*"), new XElement("option", new XAttribute("name", "specified-fonts"), true)))
-				.Save(Path.Combine(this.GetMetaInfDirectory(), "com.apple.ibooks.display-options.xml"));
+		void WriteAppleiBooksDisplayOptions() => new XElement("display_options", new XElement("platform", new XAttribute("name", "*"), new XElement("option", new XAttribute("name", "specified-fonts"), true))).Save(Path.Combine(this.GetMetaInfDirectory(), "com.apple.ibooks.display-options.xml"));
 
 		/// <summary>
 		/// Add navigation point to top-level Table of Contents. 
@@ -423,7 +421,7 @@ namespace net.vieapps.Components.Utility.Epub
 		public void AddReference(string href, string type, string title) => this._guide.AddReference(href, type, title);
 
 		/// <summary>
-		/// Generate document and save to specified file path
+		/// Generate .EPUB document and save into a specified file path
 		/// </summary>
 		/// <param name="filePath">The absolute path of .EPUB file to save the document</param>
 		/// <param name="onSuccess">The action to callback when generated successfully</param>
