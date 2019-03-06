@@ -3,38 +3,31 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<RootNamespace>net.vieapps.Components.Utility.Epub</RootNamespace>
+		<WarningLevel>3</WarningLevel>
+		<DocumentationFile>bin\$(Configuration)\netstandard2.0\VIEApps.Components.Utility.Epub.xml</DocumentationFile>
 		<AssemblyName>VIEApps.Components.Utility.Epub</AssemblyName>
 		<AssemblyTitle>VIEApps NGX EPUB Utility</AssemblyTitle>
-		<AssemblyVersion>10.2.1812.1</AssemblyVersion>
-		<FileVersion>10.2.1812.1</FileVersion>
-		<InformationalVersion>v10.2.netstandard-2+rev:2018.12.03-impr</InformationalVersion>
+		<SignAssembly>false</SignAssembly>
+		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
+		<AssemblyVersion>10.2.1903.3</AssemblyVersion>
+		<FileVersion>10.2.1903.3</FileVersion>
+		<InformationalVersion>v10.2.netstandard-2+rev:2019.03.06-refactoring</InformationalVersion>
 		<Product>VIEApps NGX</Product>
 		<Company>VIEApps.net</Company>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageId>VIEApps.Components.Utility.Epub</PackageId>
-		<Version>10.2.1812.1</Version>
-		<SignAssembly>false</SignAssembly>
-		<DelaySign>false</DelaySign>
-		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
+		<Version>10.2.1903.3</Version>
 		<Title>VIEApps NGX .EPUB Utility</Title>
 		<Description>The tiny library for generating .EPUB document on .NET Standard 2.0</Description>
 		<Authors>VIEApps.net</Authors>
-		<Copyright>© 2018 VIEApps.net</Copyright>
+		<Copyright>© 2019 VIEApps.net</Copyright>
+		<PackageLicense>LICENSE.md</PackageLicense>
+		<PackageOutputPath>..\</PackageOutputPath>
 		<PackageTags>utility;extensions;epub;ebook;ebooks;e-book;e-books;vieapps;vieapps.components</PackageTags>
-		<PackageReleaseNotes>Improvement</PackageReleaseNotes>
+		<PackageReleaseNotes>Do some refactoring</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/vieapps/Components.Utility.Epub</PackageProjectUrl>
 		<PackageIconUrl>https://github.com/vieapps/Components.Utility/raw/master/logo.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/vieapps/Components.Utility.Epub</RepositoryUrl>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<WarningLevel>3</WarningLevel>
-		<DocumentationFile>bin\Debug\netstandard2.0\VIEApps.Components.Utility.Epub.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<WarningLevel>3</WarningLevel>
-		<DocumentationFile>bin\Release\netstandard2.0\VIEApps.Components.Utility.Epub.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

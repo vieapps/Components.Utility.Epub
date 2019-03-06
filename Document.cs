@@ -423,7 +423,7 @@ namespace net.vieapps.Components.Utility.Epub
 		/// <summary>
 		/// Generate .EPUB document and save into a specified file path
 		/// </summary>
-		/// <param name="filePath">The absolute path of .EPUB file to save the document</param>
+		/// <param name="filePath">The absolute file path to save the .EPUB document</param>
 		/// <param name="onSuccess">The action to callback when generated successfully</param>
 		/// <param name="onFailure">The action to callback when got any error</param>
 		public void Generate(string filePath, Action<string> onSuccess = null, Action<Exception> onFailure = null)
