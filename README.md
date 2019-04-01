@@ -56,4 +56,4 @@ epub.Generate("sample-document.epub");
 
 ## Others
 
-This library is hard-fork of [DotNetEpub](https://github.com/gonzoua/DotNetEpub) with some modifications to run wel on .NET Standard 2.0
+This library is hard-fork of [DotNetEpub](https://github.com/gonzoua/DotNetEpub) with some modifications to run well on .NET Standard 2.0

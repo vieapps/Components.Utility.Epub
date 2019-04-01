@@ -31,7 +31,7 @@ namespace net.vieapps.Components.Utility.Epub
 		// several variables is just for convenience
 		string _tempDirectory;
 		string _opfDirectory;
-		string _metainfDirectory;
+		string _metaDirectory;
 
 		/// <summary>
 		/// Creates new instance of .EPUB document
@@ -62,7 +62,7 @@ namespace net.vieapps.Components.Utility.Epub
 		/// <returns></returns>
 		public string GetTempDirectory()
 		{
-			if (string.IsNullOrEmpty(this._tempDirectory))
+			if (string.IsNullOrWhiteSpace(this._tempDirectory))
 			{
 				this._tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 				Directory.CreateDirectory(this._tempDirectory);
@@ -72,7 +72,7 @@ namespace net.vieapps.Components.Utility.Epub
 
 		string GetOpfDirectory()
 		{
-			if (string.IsNullOrEmpty(this._opfDirectory))
+			if (string.IsNullOrWhiteSpace(this._opfDirectory))
 			{
 				this._opfDirectory = Path.Combine(this.GetTempDirectory(), "OPF");
 				Directory.CreateDirectory(this._opfDirectory);
@@ -80,15 +80,15 @@ namespace net.vieapps.Components.Utility.Epub
 			return this._opfDirectory;
 		}
 
-		string GetMetaInfDirectory()
+		string GetMetaDirectory()
 		{
-			if (string.IsNullOrEmpty(this._metainfDirectory))
+			if (string.IsNullOrWhiteSpace(this._metaDirectory))
 			{
-				this._metainfDirectory = Path.Combine(this.GetTempDirectory(), "META-INF");
-				Directory.CreateDirectory(this._metainfDirectory);
+				this._metaDirectory = Path.Combine(this.GetTempDirectory(), "META-INF");
+				Directory.CreateDirectory(this._metaDirectory);
 			}
 
-			return this._metainfDirectory;
+			return this._metaDirectory;
 		}
 
 		string GetNextID(string kind)
@@ -131,70 +131,81 @@ namespace net.vieapps.Components.Utility.Epub
 		/// Add document translator
 		/// </summary>
 		/// <param name="name">Human-readable full name</param>
-		public void AddTranslator(string name) => this._metadata.AddTranslator(name);
+		public void AddTranslator(string name)
+			=> this._metadata.AddTranslator(name);
 
 		/// <summary>
 		/// Add document subject: phrase or list of keywords
 		/// </summary>
 		/// <param name="subj">Document's subject</param>
-		public void AddSubject(string subj) => this._metadata.AddSubject(subj);
+		public void AddSubject(string subj)
+			=> this._metadata.AddSubject(subj);
 
 		/// <summary>
 		/// Add description of document's content
 		/// </summary>
 		/// <param name="description">Document description</param>
-		public void AddDescription(string description) => this._metadata.AddDescription(description);
+		public void AddDescription(string description)
+			=> this._metadata.AddDescription(description);
 
 		/// <summary>
 		/// Add terms describing general categories, functions, genres, or aggregation levels for content. 
 		/// The advised best practice is to select a value from a controlled vocabulary.
 		/// </summary>
 		/// <param name="type">document type</param>
-		public void AddType(string @type) => this._metadata.AddType(@type);
+		public void AddType(string @type)
+			=> this._metadata.AddType(@type);
 
 		/// <summary>
 		/// Add media type or dimensions of the resource. Best practice is to use a value from a controlled vocabulary (e.g. MIME media types).
 		/// </summary>
 		/// <param name="format">document format</param>
-		public void AddFormat(string format) => this._metadata.AddFormat(format);
+		public void AddFormat(string format)
+			=> this._metadata.AddFormat(format);
 
 		/// <summary>
 		/// Add a language of the intellectual content of the Publication. 
 		/// </summary>
 		/// <param name="lang">RFC3066-complient two-letter language code e.g. "en", "es", "it"</param>
-		public void AddLanguage(string lang) => this._metadata.AddLanguage(lang);
+		public void AddLanguage(string lang)
+			=> this._metadata.AddLanguage(lang);
 
 		/// <summary>
 		/// Add an identifier of an auxiliary resource and its relationship to the publication.
 		/// </summary>
 		/// <param name="relation">document relation</param>
-		public void AddRelation(string relation) => this._metadata.AddRelation(relation);
+		public void AddRelation(string relation)
+			=> this._metadata.AddRelation(relation);
 
 		/// <summary>
 		/// Add a statement about rights, or a reference to one.
 		/// </summary>
 		/// <param name="rights">A statement about rights, or a reference to one</param>
-		public void AddRights(string rights) => this._metadata.AddRights(rights);
+		public void AddRights(string rights)
+			=> this._metadata.AddRights(rights);
 
 		/// <summary>
 		/// Add book identifier
 		/// </summary>
 		/// <param name="id">A string or number used to uniquely identify the resource</param>
-		public void AddBookIdentifier(string id) => this.AddBookIdentifier(id, string.Empty);
+		public void AddBookIdentifier(string id)
+			=> this.AddBookIdentifier(id, string.Empty);
 
 		/// <summary>
 		/// Add book identifier
 		/// </summary>
 		/// <param name="id">A string or number used to uniquely identify the resource</param>
 		/// <param name="scheme">System or authority that generated or assigned the id parameter, for example "ISBN" or "DOI." </param>
-		public void AddBookIdentifier(string id, string scheme) => this._metadata.AddBookIdentifier(GetNextID("id"), id, scheme);
+		public void AddBookIdentifier(string id, string scheme)
+			=> this._metadata.AddBookIdentifier(GetNextID("id"), id, scheme);
 
 		/// <summary>
 		/// Add generic metadata 
 		/// </summary>
 		/// <param name="name">meta element name</param>
 		/// <param name="value">meta element value</param>
-		public void AddMetaItem(string name, string value) => this._metadata.AddItem(name, value);
+		public void AddMetaItem(string name, string value)
+			=> this._metadata.AddItem(name, value);
 
 		string AddEntry(string path, string type)
 		{
@@ -210,7 +221,8 @@ namespace net.vieapps.Components.Utility.Epub
 			return id;
 		}
 
-		string AddXhtmlEntry(string path) => this.AddXhtmlEntry(path, true);
+		string AddXhtmlEntry(string path)
+			=> this.AddXhtmlEntry(path, true);
 
 		string AddXhtmlEntry(string path, bool linear)
 		{
@@ -390,11 +402,14 @@ namespace net.vieapps.Components.Utility.Epub
 			packageElement.Save(Path.Combine(this.GetOpfDirectory(), opfFilePath));
 		}
 
-		void WriteNcx(string ncxFilePath) => this._ncx.ToXmlDocument().Save(Path.Combine(this.GetOpfDirectory(), ncxFilePath));
+		void WriteNcx(string ncxFilePath)
+			=> this._ncx.ToXmlDocument().Save(Path.Combine(this.GetOpfDirectory(), ncxFilePath));
 
-		void WriteContainer() => this._container.ToElement().Save(Path.Combine(this.GetMetaInfDirectory(), "container.xml"));
+		void WriteContainer()
+			=> this._container.ToElement().Save(Path.Combine(this.GetMetaDirectory(), "container.xml"));
 
-		void WriteAppleiBooksDisplayOptions() => new XElement("display_options", new XElement("platform", new XAttribute("name", "*"), new XElement("option", new XAttribute("name", "specified-fonts"), true))).Save(Path.Combine(this.GetMetaInfDirectory(), "com.apple.ibooks.display-options.xml"));
+		void WriteAppleiBooksDisplayOptions()
+			=> new XElement("display_options", new XElement("platform", new XAttribute("name", "*"), new XElement("option", new XAttribute("name", "specified-fonts"), true))).Save(Path.Combine(this.GetMetaDirectory(), "com.apple.ibooks.display-options.xml"));
 
 		/// <summary>
 		/// Add navigation point to top-level Table of Contents. 
@@ -403,14 +418,16 @@ namespace net.vieapps.Components.Utility.Epub
 		/// <param name="content">Link to TOC entry</param>
 		/// <param name="playOrder">play order counter</param>
 		/// <returns>newly created NavPoint </returns>
-		public NavPoint AddNavPoint(string label, string content, int playOrder) => this._ncx.AddNavPoint(label, this.GetNextID("navid"), content, playOrder);
+		public NavPoint AddNavPoint(string label, string content, int playOrder)
+			=> this._ncx.AddNavPoint(label, this.GetNextID("navid"), content, playOrder);
 
 		/// <summary>
 		/// Add reference to guide
 		/// </summary>
 		/// <param name="href">href of guide reference</param>
 		/// <param name="type">type of guide reference</param>
-		public void AddReference(string href, string type) => this._guide.AddReference(href, type);
+		public void AddReference(string href, string type)
+			=> this._guide.AddReference(href, type);
 
 		/// <summary>
 		/// Add reference to guide
@@ -418,7 +435,8 @@ namespace net.vieapps.Components.Utility.Epub
 		/// <param name="href">href of guide reference</param>
 		/// <param name="type">type of guide reference</param>
 		/// <param name="title">title of guide reference</param>
-		public void AddReference(string href, string type, string title) => this._guide.AddReference(href, type, title);
+		public void AddReference(string href, string type, string title)
+			=> this._guide.AddReference(href, type, title);
 
 		/// <summary>
 		/// Generate .EPUB document and save into a specified file path
