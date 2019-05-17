@@ -10,18 +10,18 @@ namespace net.vieapps.Components.Utility.Epub
 {
     class DCItem
     {
-        private string _name;
-        private string _value;
+        readonly string _name;
+        readonly string _value;
 
-        private IDictionary<string, string> _attributes;
-        private IDictionary<string, string> _opfAttributes;
+		readonly IDictionary<string, string> _attributes;
+		readonly IDictionary<string, string> _opfAttributes;
 
         internal DCItem(string name, string value)
         {
-            _name = name;
-            _value = value;
-            _attributes = new Dictionary<string, string>();
-            _opfAttributes = new Dictionary<string, string>();
+            this._name = name;
+			this._value = value;
+			this._attributes = new Dictionary<string, string>();
+			this._opfAttributes = new Dictionary<string, string>();
         }
 
 		internal void SetAttribute(string name, string value) => this._attributes.Add(name, value);

@@ -1,5 +1,4 @@
 ﻿#region Related components
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,8 +6,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-
-#endregion Related components
+#endregion
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("VIEApps.Components.XUnitTests")]
 
@@ -22,19 +20,19 @@ namespace net.vieapps.Components.Utility.Epub
         internal readonly static XNamespace OpfNS = "http://www.idpf.org/2007/opf";
         internal readonly static XNamespace DcNS = "http://purl.org/dc/elements/1.1/";
 
-        private readonly Metadata _metadata;
-        private readonly Manifest _manifest;
-        private readonly Spine _spine;
-        private readonly Guide _guide;
-        private readonly NCX _ncx;
-        private readonly Container _container;
-        private readonly Dictionary<string, int> _ids;
+        readonly Metadata _metadata;
+        readonly Manifest _manifest;
+        readonly Spine _spine;
+        readonly Guide _guide;
+        readonly NCX _ncx;
+        readonly Container _container;
+        readonly Dictionary<string, int> _ids;
 
         // several variables is just for convenience
-        private string _tempDirectory;
+        string _tempDirectory;
 
-        private string _opfDirectory;
-        private string _metaDirectory;
+        string _opfDirectory;
+        string _metaDirectory;
 
         /// <summary>
         /// Creates new instance of .EPUB document
@@ -73,7 +71,7 @@ namespace net.vieapps.Components.Utility.Epub
             return this._tempDirectory;
         }
 
-        private string GetOpfDirectory()
+        string GetOpfDirectory()
         {
             if (string.IsNullOrWhiteSpace(this._opfDirectory))
             {
@@ -83,7 +81,7 @@ namespace net.vieapps.Components.Utility.Epub
             return this._opfDirectory;
         }
 
-        private string GetMetaDirectory()
+        string GetMetaDirectory()
         {
             if (string.IsNullOrWhiteSpace(this._metaDirectory))
             {
@@ -94,7 +92,7 @@ namespace net.vieapps.Components.Utility.Epub
             return this._metaDirectory;
         }
 
-        private string GetNextID(string kind)
+        string GetNextID(string kind)
         {
             string id;
             if (this._ids.Keys.Contains(kind))
@@ -217,24 +215,24 @@ namespace net.vieapps.Components.Utility.Epub
         public void AddMetaItem(string name, string value)
             => this._metadata.AddItem(name, value);
 
-        private string AddEntry(string path, string type)
+        string AddEntry(string path, string type)
         {
             var id = this.GetNextID("id");
             this._manifest.AddItem(id, path, type);
             return id;
         }
 
-        private string AddStylesheetEntry(string path)
+        string AddStylesheetEntry(string path)
         {
             var id = this.GetNextID("stylesheet");
             this._manifest.AddItem(id, path, "text/css");
             return id;
         }
 
-        private string AddXhtmlEntry(string path)
+        string AddXhtmlEntry(string path)
             => this.AddXhtmlEntry(path, true);
 
-        private string AddXhtmlEntry(string path, bool linear)
+        string AddXhtmlEntry(string path, bool linear)
         {
             var id = this.GetNextID("html");
             this._manifest.AddItem(id, path, "application/xhtml+xml");
@@ -242,7 +240,7 @@ namespace net.vieapps.Components.Utility.Epub
             return id;
         }
 
-        private string AddImageEntry(string path)
+        string AddImageEntry(string path)
         {
             var id = this.GetNextID("img");
             var contentType = string.Empty;
@@ -263,14 +261,14 @@ namespace net.vieapps.Components.Utility.Epub
             return id;
         }
 
-        private void CopyFile(string path, string epubPath)
+        void CopyFile(string path, string epubPath)
         {
             var fullPath = Path.Combine(this.GetOpfDirectory(), epubPath);
             this.EnsureDirectoryExists(fullPath);
             File.Copy(path, fullPath);
         }
 
-        private string EnsureDirectoryExists(string path)
+        string EnsureDirectoryExists(string path)
         {
             var dir = Path.GetDirectoryName(path);
             if (!Directory.Exists(dir))
@@ -278,14 +276,14 @@ namespace net.vieapps.Components.Utility.Epub
             return path;
         }
 
-        private void WriteFile(string epubPath, byte[] content)
+        void WriteFile(string epubPath, byte[] content)
         {
             var fullPath = Path.Combine(this.GetOpfDirectory(), epubPath);
             this.EnsureDirectoryExists(fullPath);
             File.WriteAllBytes(fullPath, content);
         }
 
-        private void WriteFile(string epubPath, string content)
+        void WriteFile(string epubPath, string content)
         {
             var fullPath = Path.Combine(this.GetOpfDirectory(), epubPath);
             this.EnsureDirectoryExists(fullPath);
@@ -402,7 +400,7 @@ namespace net.vieapps.Components.Utility.Epub
             return this.AddEntry(epubPath, mediaType);
         }
 
-        private void WriteOpf(string opfFilePath)
+        void WriteOpf(string opfFilePath)
         {
             var packageElement = new XElement(Document.OpfNS + "package", new XAttribute("version", "2.0"), new XAttribute("unique-identifier", "BookId"));
             packageElement.Add(this._metadata.ToElement());
@@ -412,13 +410,13 @@ namespace net.vieapps.Components.Utility.Epub
             packageElement.Save(Path.Combine(this.GetOpfDirectory(), opfFilePath));
         }
 
-        private void WriteNcx(string ncxFilePath)
+        void WriteNcx(string ncxFilePath)
             => this._ncx.ToXmlDocument().Save(Path.Combine(this.GetOpfDirectory(), ncxFilePath));
 
-        private void WriteContainer()
+        void WriteContainer()
             => this._container.ToElement().Save(Path.Combine(this.GetMetaDirectory(), "container.xml"));
 
-        private void WriteAppleiBooksDisplayOptions()
+        void WriteAppleiBooksDisplayOptions()
             => new XElement("display_options", new XElement("platform", new XAttribute("name", "*"), new XElement("option", new XAttribute("name", "specified-fonts"), true))).Save(Path.Combine(this.GetMetaDirectory(), "com.apple.ibooks.display-options.xml"));
 
         /// <summary>

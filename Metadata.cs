@@ -1,19 +1,17 @@
 ﻿#region Related components
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-
-#endregion Related components
+#endregion
 
 namespace net.vieapps.Components.Utility.Epub
 {
     internal class Metadata
     {
-        private List<DCItem> _dcItems = new List<DCItem>();
-        private List<Item> _items = new List<Item>();
+        readonly List<DCItem> _dcItems = new List<DCItem>();
+        readonly List<Item> _items = new List<Item>();
 
         internal void AddAuthor(string name) => this.AddCreator(name, "aut");
 

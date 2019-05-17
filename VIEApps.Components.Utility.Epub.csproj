@@ -9,14 +9,14 @@
 		<AssemblyTitle>VIEApps NGX EPUB Utility</AssemblyTitle>
 		<SignAssembly>false</SignAssembly>
 		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
-		<AssemblyVersion>10.2.1904.1</AssemblyVersion>
-		<FileVersion>10.2.1904.1</FileVersion>
-		<InformationalVersion>v10.2.netstandard-2+rev:2019.04.01-refactoring</InformationalVersion>
+		<AssemblyVersion>10.2.1905.1</AssemblyVersion>
+		<FileVersion>10.2.1905.1</FileVersion>
+		<InformationalVersion>v10.2.netstandard-2+rev:2019.05.17-add.publisher</InformationalVersion>
 		<Product>VIEApps NGX</Product>
 		<Company>VIEApps.net</Company>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageId>VIEApps.Components.Utility.Epub</PackageId>
-		<Version>10.2.1904.1</Version>
+		<Version>10.2.1905.1</Version>
 		<Title>VIEApps NGX .EPUB Utility</Title>
 		<Description>The tiny library for generating .EPUB document on .NET Standard 2.0</Description>
 		<Authors>VIEApps.net</Authors>
@@ -24,7 +24,7 @@
 		<PackageLicense>LICENSE.md</PackageLicense>
 		<PackageOutputPath>..\</PackageOutputPath>
 		<PackageTags>utility;extensions;epub;ebook;ebooks;e-book;e-books;vieapps;vieapps.components</PackageTags>
-		<PackageReleaseNotes>Do some refactoring</PackageReleaseNotes>
+		<PackageReleaseNotes>Improvement: add publisher</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/vieapps/Components.Utility.Epub</PackageProjectUrl>
 		<PackageIconUrl>https://github.com/vieapps/Components.Utility/raw/master/logo.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/vieapps/Components.Utility.Epub</RepositoryUrl>

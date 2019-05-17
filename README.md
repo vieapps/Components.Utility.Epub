@@ -12,9 +12,9 @@ epub.AddBookIdentifier(uuid);
 epub.AddLanguage(language);
 epub.AddTitle(title);
 epub.AddAuthor(author);
+epub.AddPublisher(publisher);
 epub.AddMetaItem("dc:contributor", contributor);
 epub.AddMetaItem("book:Original", original);
-epub.AddMetaItem("book:Publisher", publisher);
 epub.AddStylesheetData("style.css", stylesheet);
 
 var coverImageId = epub.AddImageData("cover.jpg", coverImageBinaryData);
