@@ -1,81 +1,147 @@
 ﻿#region Related components
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.Collections.Generic;
 #endregion
 
 namespace net.vieapps.Components.Utility.Epub
 {
-    internal class Metadata
-    {
-        readonly List<DCItem> _dcItems = new List<DCItem>();
-        readonly List<Item> _items = new List<Item>();
+	internal class Metadata
+	{
+		internal class Item
+		{
+			private readonly string _name;
+			private readonly string _value;
 
-        internal void AddAuthor(string name) => this.AddCreator(name, "aut");
+			internal Item(string name, string value)
+			{
+				this._name = name;
+				this._value = value;
+			}
 
-        internal void AddTranslator(string name) => this.AddCreator(name, "trl");
+			internal XElement ToElement()
+			{
+				var element = new XElement(Document.OpfNS + "meta");
+				element.SetAttributeValue("name", this._name);
+				element.SetAttributeValue("content", this._value);
+				return element;
+			}
+		}
 
-        internal void AddSubject(string subj) => this._dcItems.Add(new DCItem("subject", subj));
+		internal class DCItem
+		{
+			readonly string _name;
+			readonly string _value;
 
-        internal void AddDescription(string description) => this._dcItems.Add(new DCItem("description", description));
+			readonly IDictionary<string, string> _attributes;
+			readonly IDictionary<string, string> _opfAttributes;
 
-        internal void AddType(string @type) => this._dcItems.Add(new DCItem("type", @type));
+			internal DCItem(string name, string value)
+			{
+				this._name = name;
+				this._value = value;
+				this._attributes = new Dictionary<string, string>();
+				this._opfAttributes = new Dictionary<string, string>();
+			}
 
-        internal void AddFormat(string format) => this._dcItems.Add(new DCItem("format", format));
+			internal void SetAttribute(string name, string value)
+				=> this._attributes.Add(name, value);
 
-        internal void AddLanguage(string lang) => this._dcItems.Add(new DCItem("language", lang));
+			internal void SetOpfAttribute(string name, string value)
+				=> this._opfAttributes.Add(name, value);
 
-        internal void AddRelation(string relation) => this._dcItems.Add(new DCItem("relation", relation));
+			internal XElement ToElement()
+			{
+				var element = new XElement(Document.DcNS + this._name, this._value);
+				foreach (string key in this._opfAttributes.Keys)
+					element.SetAttributeValue(Document.OpfNS + key, this._opfAttributes[key]);
+				foreach (string key in this._attributes.Keys)
+					element.SetAttributeValue(key, this._attributes[key]);
+				return element;
+			}
+		}
 
-        internal void AddRights(string rights) => this._dcItems.Add(new DCItem("rights", rights));
+		readonly List<Item> _items = new List<Item>();
+		readonly List<DCItem> _dcItems = new List<DCItem>();
 
-        internal void AddCreator(string name, string role)
-        {
-            var dcitem = new DCItem("creator", name);
-            dcitem.SetOpfAttribute("role", role);
-            this._dcItems.Add(dcitem);
-        }
+		internal Item AddItem(string name, string value)
+		{
+			var item = new Item(name, value);
+			this._items.Add(item);
+			return item;
+		}
 
-        internal void AddCcontributor(string name, string role)
-        {
-            var dcitem = new DCItem("contributor", name);
-            dcitem.SetOpfAttribute("role", role);
-            this._dcItems.Add(dcitem);
-        }
+		internal DCItem AddDCItem(string name, string value)
+		{
+			var item = new DCItem(name, value);
+			this._dcItems.Add(item);
+			return item;
+		}
 
-        internal void AddTitle(string title) => this._dcItems.Add(new DCItem("title", title));
+		internal XElement ToElement()
+		{
+			XNamespace dc = "http://purl.org/dc/elements/1.1/";
+			XNamespace opf = "http://www.idpf.org/2007/opf";
+			var element = new XElement(Document.OpfNS + "metadata", new XAttribute(XNamespace.Xmlns + "dc", dc), new XAttribute(XNamespace.Xmlns + "opf", opf));
+			this._items.ForEach(item => element.Add(item.ToElement()));
+			this._dcItems.ForEach(item => element.Add(item.ToElement()));
+			return element;
+		}
 
-        internal void AddPublisher(string publisher) => this._dcItems.Add(new DCItem("publisher", publisher));
+		internal void AddCreator(string name, string role)
+		{
+			var item = this.AddDCItem("creator", name);
+			if (!string.IsNullOrWhiteSpace(role))
+				item.SetOpfAttribute("role", role);
+		}
 
-        internal void AddBookIdentifier(string id, string uuid) => this.AddBookIdentifier(id, uuid, string.Empty);
+		internal void AddAuthor(string name) 
+			=> this.AddCreator(name, "aut");
 
-        internal void AddBookIdentifier(string id, string uuid, string scheme)
-        {
-            var dcitem = new DCItem("identifier", uuid);
-            dcitem.SetAttribute("id", id);
-            if (!string.IsNullOrEmpty(scheme))
-                dcitem.SetOpfAttribute("scheme", scheme);
-            this._dcItems.Add(dcitem);
-        }
+		internal void AddTranslator(string name)
+			=> this.AddCreator(name, "trl");
 
-        internal void AddItem(string name, string value) => this._items.Add(new Item(name, value));
+		internal void AddContributor(string name)
+			=> this.AddDCItem("contributor", name);
 
-        internal XElement ToElement()
-        {
-            XNamespace dc = "http://purl.org/dc/elements/1.1/";
-            XNamespace opf = "http://www.idpf.org/2007/opf";
+		internal void AddSubject(string subject)
+			=> this.AddDCItem("subject", subject);
 
-            var element = new XElement(Document.OpfNS + "metadata", new XAttribute(XNamespace.Xmlns + "dc", dc), new XAttribute(XNamespace.Xmlns + "opf", opf));
+		internal void AddDescription(string description)
+			=> this.AddDCItem("description", description);
 
-            foreach (var item in this._items)
-                element.Add(item.ToElement());
+		internal void AddType(string type)
+			=> this.AddDCItem("type", type);
 
-            foreach (var item in this._dcItems)
-                element.Add(item.ToElement());
+		internal void AddFormat(string format)
+			=> this.AddDCItem("format", format);
 
-            return element;
-        }
-    }
+		internal void AddLanguage(string language)
+			=> this.AddDCItem("language", language);
+
+		internal void AddRelation(string relation)
+			=> this.AddDCItem("relation", relation);
+
+		internal void AddRights(string rights)
+			=> this.AddDCItem("rights", rights);
+
+		internal void AddTitle(string title)
+			=> this.AddDCItem("title", title);
+
+		internal void AddPublisher(string publisher)
+			=> this.AddDCItem("publisher", publisher);
+
+		internal void AddBookIdentifier(string id, string uuid, string scheme)
+		{
+			var item = this.AddDCItem("identifier", uuid);
+			item.SetAttribute("id", id);
+			if (!string.IsNullOrEmpty(scheme))
+				item.SetOpfAttribute("scheme", scheme);
+		}
+
+		internal void AddBookIdentifier(string id, string uuid)
+			=> this.AddBookIdentifier(id, uuid, string.Empty);
+	}
 }
