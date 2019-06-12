@@ -152,9 +152,9 @@ namespace net.vieapps.Components.Utility.Epub
 		/// <summary>
 		/// Add document subject: phrase or list of keywords
 		/// </summary>
-		/// <param name="subj">Document's subject</param>
-		public void AddSubject(string subj)
-			=> this._metadata.AddSubject(subj);
+		/// <param name="subject">Document's subject</param>
+		public void AddSubject(string subject)
+			=> this._metadata.AddSubject(subject);
 
 		/// <summary>
 		/// Add description of document's content

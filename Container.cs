@@ -16,11 +16,13 @@ namespace net.vieapps.Components.Utility.Epub
             public string MediaType;
         }
 
-        List<RootFile> _rootFiles;
+		readonly List<RootFile> _rootFiles;
 
-		internal Container() => this._rootFiles = new List<RootFile>();
+		internal Container()
+			=> this._rootFiles = new List<RootFile>();
 
-		internal void AddRootFile(string file, string mediaType) => this._rootFiles.Add(new RootFile { File = file, MediaType = mediaType });
+		internal void AddRootFile(string file, string mediaType)
+			=> this._rootFiles.Add(new RootFile { File = file, MediaType = mediaType });
 
 		internal XElement ToElement()
         {
