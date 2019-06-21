@@ -1,6 +1,6 @@
 # VIEApps.Components.Utility.Epub
 
-A simple library for generating .EPUB documents on .NET Standard 2.0
+A simple library for generating .EPUB documents on .NET Standard 2.x
 
 [![NuGet](https://img.shields.io/nuget/v/VIEApps.Components.Utility.Epub.svg)](https://www.nuget.org/packages/VIEApps.Components.Utility.Epub)
 
@@ -56,4 +56,4 @@ epub.Generate("sample-document.epub");
 
 ## Others
 
-This library is hard-fork of [DotNetEpub](https://github.com/gonzoua/DotNetEpub) with some modifications to run well on .NET Standard 2.0
+This library is hard-fork of [DotNetEpub](https://github.com/gonzoua/DotNetEpub) with some modifications to run well on .NET Standard 2.x
