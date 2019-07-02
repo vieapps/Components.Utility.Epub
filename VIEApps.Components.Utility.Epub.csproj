@@ -7,20 +7,21 @@
 		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\VIEApps.Components.Utility.Epub.xml</DocumentationFile>
 		<AssemblyName>VIEApps.Components.Utility.Epub</AssemblyName>
 		<AssemblyTitle>VIEApps NGX EPUB Utility</AssemblyTitle>
-		<SignAssembly>false</SignAssembly>
+		<SignAssembly>$(Sign)</SignAssembly>
+		<DefineConstants>$(SignConstant)</DefineConstants>
 		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
-		<AssemblyVersion>10.3.1906.5</AssemblyVersion>
-		<FileVersion>10.3.1906.5</FileVersion>
-		<InformationalVersion>v10.3+rev:2019.06.20-multiple.targets</InformationalVersion>
+		<AssemblyVersion>10.3$(ReleaseVersion)</AssemblyVersion>
+		<FileVersion>10.3$(ReleaseVersion)</FileVersion>
+		<InformationalVersion>10.3-$(TargetFramework)-$(ReleaseRevision)</InformationalVersion>
+		<Version>10.3$(ReleaseVersion)$(ReleaseSurfix)</Version>
 		<Product>VIEApps NGX</Product>
-		<Company>VIEApps.net</Company>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<PackageId>VIEApps.Components.Utility.Epub</PackageId>
-		<Version>10.3.1906.5-preview</Version>
 		<Title>VIEApps NGX .EPUB Utility</Title>
 		<Description>The tiny library for generating .EPUB document on .NET Standard 2.x</Description>
-		<Authors>VIEApps.net</Authors>
 		<Copyright>© 2019 VIEApps.net</Copyright>
+		<Authors>VIEApps.net</Authors>
+		<Company>VIEApps.net</Company>
+		<GeneratePackageOnBuild>$(GeneratePackage)</GeneratePackageOnBuild>
+		<PackageId>VIEApps.Components.Utility.Epub$(PackageSurfix)</PackageId>
 		<PackageLicense>LICENSE.md</PackageLicense>
 		<PackageOutputPath>..\</PackageOutputPath>
 		<PackageTags>utility;extensions;epub;ebook;ebooks;e-book;e-books;vieapps;vieapps.components</PackageTags>

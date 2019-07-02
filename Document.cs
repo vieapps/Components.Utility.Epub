@@ -8,7 +8,9 @@ using System.Text;
 using System.Xml.Linq;
 #endregion
 
+#if !SIGN
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("VIEApps.Components.XUnitTests")]
+#endif
 
 namespace net.vieapps.Components.Utility.Epub
 {
