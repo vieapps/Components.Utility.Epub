@@ -12,7 +12,7 @@
 		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
 		<AssemblyVersion>10.3$(ReleaseVersion)</AssemblyVersion>
 		<FileVersion>10.3$(ReleaseVersion)</FileVersion>
-		<InformationalVersion>10.3-$(TargetFramework)-$(ReleaseRevision)</InformationalVersion>
+		<InformationalVersion>10.3$(ReleaseVersion)@$(TargetFramework)#sn:$(Sign)</InformationalVersion>
 		<Version>10.3$(ReleaseVersion)$(ReleaseSuffix)</Version>
 		<Product>VIEApps NGX</Product>
 		<Title>VIEApps NGX .EPUB Utility</Title>
@@ -24,11 +24,10 @@
 		<PackageId>VIEApps.Components.Utility.Epub$(PackageSuffix)</PackageId>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageIcon>Icon.png</PackageIcon>
-		<PackageOutputPath>..\</PackageOutputPath>
+		<PackageOutputPath>../</PackageOutputPath>
 		<PackageTags>utility;extensions;epub;ebook;ebooks;e-book;e-books;vieapps;vieapps.components</PackageTags>
 		<PackageReleaseNotes>Support .NET Standard 2.1</PackageReleaseNotes>
 		<PackageProjectUrl>https://vieapps.net/</PackageProjectUrl>
-		<PackageIconUrl>https://github.com/vieapps/Components.Utility/raw/master/logo.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/vieapps/Components.Utility.Epub</RepositoryUrl>
 	</PropertyGroup>
 
