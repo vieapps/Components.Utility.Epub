@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0</TargetFrameworks>
 		<RootNamespace>net.vieapps.Components.Utility.Epub</RootNamespace>
 		<WarningLevel>3</WarningLevel>
 		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\VIEApps.Components.Utility.Epub.xml</DocumentationFile>
@@ -26,7 +26,7 @@
 		<PackageIcon>Icon.png</PackageIcon>
 		<PackageOutputPath>../</PackageOutputPath>
 		<PackageTags>utility;extensions;epub;ebook;ebooks;e-book;e-books;vieapps;vieapps.components</PackageTags>
-		<PackageReleaseNotes>Support .NET Standard 2.1</PackageReleaseNotes>
+		<PackageReleaseNotes>Support .NET Standard 2.1/.NET CoreApp 3.0</PackageReleaseNotes>
 		<PackageProjectUrl>https://vieapps.net/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/vieapps/Components.Utility.Epub</RepositoryUrl>
 	</PropertyGroup>
