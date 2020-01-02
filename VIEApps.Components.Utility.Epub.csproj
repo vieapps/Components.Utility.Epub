@@ -16,8 +16,8 @@
 		<Version>10.3$(ReleaseVersion)$(ReleaseSuffix)</Version>
 		<Product>VIEApps NGX</Product>
 		<Title>VIEApps NGX .EPUB Utility</Title>
-		<Description>The tiny library for generating .EPUB document on .NET Standard 2.x/.NET Core 3.0</Description>
-		<Copyright>© 2019 VIEApps.net</Copyright>
+		<Description>The tiny library for generating .EPUB document on .NET Standard 2.x/.NET Core 3.x</Description>
+		<Copyright>© 2020 VIEApps.net</Copyright>
 		<Authors>VIEApps.net</Authors>
 		<Company>VIEApps.net</Company>
 		<GeneratePackageOnBuild>$(GeneratePackage)</GeneratePackageOnBuild>
@@ -26,9 +26,10 @@
 		<PackageIcon>Icon.png</PackageIcon>
 		<PackageOutputPath>../</PackageOutputPath>
 		<PackageTags>utility;extensions;epub;ebook;ebooks;e-book;e-books;vieapps;vieapps.components</PackageTags>
-		<PackageReleaseNotes>Upgrade to latest components and add supported of .NET Core 3.1</PackageReleaseNotes>
+		<PackageReleaseNotes>Upgrade to latest components</PackageReleaseNotes>
 		<PackageProjectUrl>https://vieapps.net/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/vieapps/Components.Utility.Epub</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
 	<ItemGroup>

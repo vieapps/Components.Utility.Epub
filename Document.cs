@@ -246,10 +246,7 @@ namespace net.vieapps.Components.Utility.Epub
 			return id;
 		}
 
-		string AddXhtmlEntry(string path)
-			=> this.AddXhtmlEntry(path, true);
-
-		string AddXhtmlEntry(string path, bool linear)
+		string AddXhtmlEntry(string path, bool linear = true)
 		{
 			var id = this.GetNextID("html");
 			this._manifest.AddItem(id, path, "application/xhtml+xml");
@@ -287,9 +284,9 @@ namespace net.vieapps.Components.Utility.Epub
 
 		string EnsureDirectoryExists(string path)
 		{
-			var dir = Path.GetDirectoryName(path);
-			if (!Directory.Exists(dir))
-				Directory.CreateDirectory(dir);
+			var directory = Path.GetDirectoryName(path);
+			if (!Directory.Exists(directory))
+				Directory.CreateDirectory(directory);
 			return path;
 		}
 
