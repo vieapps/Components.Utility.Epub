@@ -488,7 +488,7 @@ namespace net.vieapps.Components.Utility.Epub
 				// zip the temp directory as .EPUB file
 				ZipFile.CreateFromDirectory(this.GetTempDirectory(), filePath, CompressionLevel.Optimal, false, Encoding.UTF8);
 
-				// add MIME type
+				// add MIME type => for working with Apple iBooks
 				using (var zipArchive = ZipFile.Open(filePath, ZipArchiveMode.Update))
 				{
 					var entry = zipArchive.CreateEntry("mimetype", CompressionLevel.NoCompression);
