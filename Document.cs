@@ -506,7 +506,7 @@ namespace net.vieapps.Components.Utility.Epub
 				if (onFailure != null)
 					onFailure(ex);
 				else
-					throw ex;
+					throw;
 			}
 			finally
 			{
