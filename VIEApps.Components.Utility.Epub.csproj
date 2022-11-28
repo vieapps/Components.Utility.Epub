@@ -8,10 +8,10 @@
 		<RootNamespace>net.vieapps.Components.Utility.Epub</RootNamespace>
 		<AssemblyName>VIEApps.Components.Utility.Epub</AssemblyName>
 		<AssemblyTitle>VIEApps NGX EPUB Utility</AssemblyTitle>
-		<AssemblyVersion>10.6$(ReleaseVersion)</AssemblyVersion>
-		<FileVersion>10.6$(ReleaseVersion)</FileVersion>
-		<InformationalVersion>10.6.$([System.DateTime]::Now.Year).$([System.DateTime]::Now.Month).$([System.DateTime]::Now.Day)@$(TargetFramework)#sn:$(Sign)#$(ReleaseRevision)</InformationalVersion>
-		<Version>10.6$(ReleaseVersion)$(ReleaseSuffix)</Version>
+		<AssemblyVersion>10.7$(ReleaseVersion)</AssemblyVersion>
+		<FileVersion>10.7$(ReleaseVersion)</FileVersion>
+		<InformationalVersion>10.7.$([System.DateTime]::Now.Year).$([System.DateTime]::Now.Month).$([System.DateTime]::Now.Day)@$(TargetFramework)#sn:$(Sign)#$(ReleaseRevision)</InformationalVersion>
+		<Version>10.7$(ReleaseVersion)$(ReleaseSuffix)</Version>
 		<Product>VIEApps NGX</Product>
 		<Title>VIEApps NGX .EPUB Utility</Title>
 		<Description>The tiny component for generating .EPUB document on .NET</Description>
